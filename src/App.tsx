@@ -20,6 +20,7 @@ import FocusTimerPage from "./pages/FocusTimerPage";
 import AIChat from "./pages/AIChat";
 import Analytics from "./pages/Analytics";
 import Architecture from "./pages/Architecture";
+import BurnoutRisk from "./pages/BurnoutRisk";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -47,6 +48,7 @@ const App = () => (
                 <Route path="/docs" element={<Documentation />} />
                 <Route path="/focus-timer" element={<FocusTimerPage />} />
                 <Route path="/ai-chat" element={<AIChat />} />
+                <Route path="/burnout-risk" element={<BurnoutRisk />} />
                 <Route path="/analytics" element={<Analytics />} />
                 <Route path="/architecture" element={<Architecture />} />
               </Route>
