@@ -1,7 +1,13 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, Sun, Moon, Bell } from 'lucide-react';
+import { Menu, Sun, Moon, Bell, User, Settings, CreditCard, LogOut } from 'lucide-react';
 import { useTheme } from 'next-themes';
+import { useAuth } from '@/context/AuthContext';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import {
+  DropdownMenu, DropdownMenuContent, DropdownMenuItem,
+  DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 const titles: Record<string, string> = {
   '/dashboard': 'Dashboard',
@@ -12,11 +18,15 @@ const titles: Record<string, string> = {
   '/ai-chat': 'AI Assistant',
   '/analytics': 'Analytics',
   '/architecture': 'System Architecture',
+  '/burnout-risk': 'Burnout Risk',
+  '/profile': 'My Profile',
 };
 
 export function AppHeader({ onMenuClick }: { onMenuClick: () => void }) {
   const { theme, setTheme } = useTheme();
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
   const title = titles[location.pathname] || 'Flowductive';
 
   return (
@@ -33,6 +43,38 @@ export function AppHeader({ onMenuClick }: { onMenuClick: () => void }) {
         <Button variant="ghost" size="icon" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
           {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
         </Button>
+
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" size="icon" className="rounded-full">
+              <Avatar className="h-8 w-8">
+                <AvatarFallback className="bg-primary/20 text-primary text-sm font-bold">
+                  {user?.name?.[0]?.toUpperCase() || 'U'}
+                </AvatarFallback>
+              </Avatar>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="w-56">
+            <DropdownMenuLabel>
+              <p className="text-sm font-medium">{user?.name || 'User'}</p>
+              <p className="text-xs text-muted-foreground">{user?.email || 'user@example.com'}</p>
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={() => navigate('/profile')}>
+              <User className="mr-2 h-4 w-4" /> My Profile
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => navigate('/dashboard')}>
+              <Settings className="mr-2 h-4 w-4" /> Settings
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => navigate('/analytics')}>
+              <CreditCard className="mr-2 h-4 w-4" /> Subscription
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={() => { logout(); navigate('/'); }} className="text-destructive focus:text-destructive">
+              <LogOut className="mr-2 h-4 w-4" /> Sign Out
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </header>
   );
