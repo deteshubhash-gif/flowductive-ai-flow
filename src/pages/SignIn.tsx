@@ -22,7 +22,8 @@ export default function SignIn() {
     setLoading(true);
     try {
       await login(email, password);
-      toast.success('Welcome back!');
+      const userName = email.split('@')[0];
+      toast.success(`Welcome back, ${userName}! 👋`);
       navigate('/dashboard');
     } catch {
       toast.error('Login failed');

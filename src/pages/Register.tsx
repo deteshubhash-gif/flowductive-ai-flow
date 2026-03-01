@@ -27,7 +27,7 @@ export default function Register() {
     setLoading(true);
     try {
       await register(name, email, password, role);
-      toast.success('Account created! Welcome to Flowductive.');
+      toast.success(`Welcome, ${name}! 🎉 Your account is ready.`);
       navigate('/dashboard');
     } catch {
       toast.error('Registration failed');

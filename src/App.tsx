@@ -22,6 +22,8 @@ import Analytics from "./pages/Analytics";
 import Architecture from "./pages/Architecture";
 import BurnoutRisk from "./pages/BurnoutRisk";
 import Profile from "./pages/Profile";
+import Settings from "./pages/Settings";
+import Subscription from "./pages/Subscription";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -53,6 +55,8 @@ const App = () => (
                 <Route path="/analytics" element={<Analytics />} />
                 <Route path="/architecture" element={<Architecture />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/settings" element={<Settings />} />
+                <Route path="/subscription" element={<Subscription />} />
               </Route>
             </Route>
             <Route path="*" element={<NotFound />} />
