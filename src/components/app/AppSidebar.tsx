@@ -3,7 +3,7 @@ import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
 import {
   LayoutDashboard, Kanban, Calendar, FileText, Timer, MessageSquare,
-  BarChart3, Code2, LogOut, Zap, ChevronLeft
+  BarChart3, Code2, LogOut, Zap, ChevronLeft, AlertTriangle
 } from 'lucide-react';
 
 const navItems = [
@@ -13,6 +13,7 @@ const navItems = [
   { path: '/docs', label: 'Documents', icon: FileText },
   { path: '/focus-timer', label: 'Focus Timer', icon: Timer },
   { path: '/ai-chat', label: 'AI Chat', icon: MessageSquare },
+  { path: '/burnout-risk', label: 'Burnout Risk', icon: AlertTriangle },
   { path: '/analytics', label: 'Analytics', icon: BarChart3 },
   { path: '/architecture', label: 'Architecture', icon: Code2 },
 ];
