@@ -21,6 +21,7 @@ import AIChat from "./pages/AIChat";
 import Analytics from "./pages/Analytics";
 import Architecture from "./pages/Architecture";
 import BurnoutRisk from "./pages/BurnoutRisk";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -51,6 +52,7 @@ const App = () => (
                 <Route path="/burnout-risk" element={<BurnoutRisk />} />
                 <Route path="/analytics" element={<Analytics />} />
                 <Route path="/architecture" element={<Architecture />} />
+                <Route path="/profile" element={<Profile />} />
               </Route>
             </Route>
             <Route path="*" element={<NotFound />} />
